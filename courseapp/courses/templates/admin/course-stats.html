@@ -1,0 +1,32 @@
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+{{ super }}
+<div class="col-lg-5">
+    <h3 class="text-danger text-center">Thống kê báo cáo bài học của từng khóa học</h3>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th class="col-8 text-center align-middle">Khóa học</th>
+            <th class="col-4 text-center">Số lượng bài học</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for lesson_number in lesson_total_of_course %}
+        <tr>
+            <td class="col-8">{{ lesson_number.subject }}</td>
+            <td class="col-4 text-center">{{ lesson_number.lesson_number }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h4>Tổng số khóa học: <span class="font-weight-bold">{{ course_total }}</span></h4>
+</div>
+<div class="col-lg-7">
+    <h3 class="text-danger text-center">Biểu đồ thống kê</h3>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+</div>
+{% endblock %}

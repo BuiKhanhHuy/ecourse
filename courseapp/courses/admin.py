@@ -1,14 +1,31 @@
 from django.contrib import admin
 from django import forms
+from django.urls import path
+from django.template.response import TemplateResponse
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from .models import Category, Course, Lesson, Tag, User
 from django.contrib.auth.models import Group
+from django.db.models import Count
 from django.utils.html import mark_safe
 
 
 class CoursesAppAdmin(admin.AdminSite):
     site_title = 'e-course'
     site_header = 'E-course System'
+
+    def get_urls(self):
+        return [
+                   path('course-stats/', self.course_stats, name='course-stats'),
+               ] + super().get_urls()
+
+    def course_stats(self, request):
+        course_total = Course.objects.count()
+        lesson_total_of_course = Course.objects.annotate(lesson_number=Count('lessons')) \
+            .values('pk', 'subject', 'lesson_number')
+        template = 'admin/course-stats.html'
+        return TemplateResponse(request, template,
+                                {'course_total': course_total,
+                                 'lesson_total_of_course': lesson_total_of_course})
 
 
 class LessonTagInline(admin.StackedInline):
