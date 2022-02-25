@@ -1,7 +1,10 @@
-{% extends 'admin/base_site.html' %}
+{% extends 'admin/base.html' %}
 
 {% block content %}
 {{ super }}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <div class="col-lg-5">
     <h3 class="text-danger text-center">Thống kê báo cáo bài học của từng khóa học</h3>
     <table class="table table-bordered">
@@ -27,6 +30,42 @@
     <div>
         <canvas id="myChart"></canvas>
     </div>
-
 </div>
+
+<script>
+    let lable = 'Biểu đồ thống kê số lượng bài học của khóa học'
+    let type = 'bar'
+    let charId = 'myChart'
+    let borderWidth = 1
+    let labels = []
+    let data = []
+    let backgroundColor = []
+    let borderColor = []
+    
+    charCustom(charId, type, labels, lable, data, backgroundColor, borderColor, borderWidth)
+
+    function charCustom(charId, type, labels, lable, data, backgroundColor, borderColor, borderWidth ) {
+        const ctx = document.getElementById('charId');
+        const myChart = new Chart(ctx, {
+            type: 'type',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: lable,
+                    data: data,
+                    backgroundColor: backgroundColor,
+                    borderColor: borderColor,
+                    borderWidth: borderWidth
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+</script>
 {% endblock %}
