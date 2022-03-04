@@ -17,6 +17,7 @@ from django.urls import path, include, re_path
 
 
 urlpatterns = [
-    path('', include('courses.urls'), name='courses'),
-    re_path(r'^ckeditor/', include('ckeditor_uploader.urls'), name='ckeditor_uploader')
+    path('', include('courses.urls')),
+    re_path(r'^ckeditor/', include('ckeditor_uploader.urls'), name='ckeditor_uploader'),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
 ]
