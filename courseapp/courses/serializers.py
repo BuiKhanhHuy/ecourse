@@ -11,9 +11,19 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField(source='image')
+
+    def get_image(self, course):
+        request = self.context['request']
+        if course.image.name.startswith('static/'):
+            path = "/%s" % course.image.name
+        else:
+            path = '/static/%s' % course.image.name
+        return request.build_absolute_uri(path)
+
     class Meta:
         model = Course
-        fields = ['id', 'subject', 'created_date', 'category_id']
+        fields = ['id', 'subject', 'image', 'created_date', 'category_id']
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -27,7 +37,7 @@ class LessonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Lesson
-        fields = ['id', 'subject', 'course_id', 'created_date', 'updated_date', 'tags']
+        fields = ['id', 'subject', 'image', 'course_id', 'created_date', 'updated_date', 'tags']
 
 
 class LessonDetailSerializer(LessonSerializer):

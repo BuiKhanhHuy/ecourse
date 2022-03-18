@@ -13,7 +13,7 @@ from .serializers import (CategorySerializer, CourseSerializer,
                           CommentSerializer, BaseCommentSerializer,
                           UserSerializer, UserDetailSerializer,
                           RatingSerializer, ViewSerializer)
-from .paginator import BasePagination
+from .paginator import CoursePagination
 
 
 class CategoryViewSet(viewsets.ViewSet, generics.ListAPIView):
@@ -23,7 +23,7 @@ class CategoryViewSet(viewsets.ViewSet, generics.ListAPIView):
 
 class CourseViewSet(viewsets.ViewSet, generics.ListAPIView):
     serializer_class = CourseSerializer
-    pagination_class = BasePagination
+    pagination_class = CoursePagination
 
     def get_queryset(self):
         course = Course.objects.filter(active=True)

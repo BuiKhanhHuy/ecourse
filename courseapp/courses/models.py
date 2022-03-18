@@ -38,6 +38,7 @@ class Course(BaseModel):
 class Lesson(BaseModel):
     subject = models.CharField(max_length=255)
     content = RichTextField()
+    image = models.ImageField(null=True, upload_to="lessons/title/%Y/%m/%d/")
     course = models.ForeignKey('Course', null=True,
                                related_name='lessons',
                                on_delete=models.CASCADE)

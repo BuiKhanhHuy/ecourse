@@ -137,7 +137,7 @@ CREATE TABLE `courses_category` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +146,7 @@ CREATE TABLE `courses_category` (
 
 LOCK TABLES `courses_category` WRITE;
 /*!40000 ALTER TABLE `courses_category` DISABLE KEYS */;
-INSERT INTO `courses_category` VALUES (1,'Công nghệ thông tin'),(2,'Khoa học dữ liệu');
+INSERT INTO `courses_category` VALUES (1,'Công nghệ thông tin'),(2,'Khoa học dữ liệu'),(3,'Hệ thống thông tin quản lý'),(4,'An toàn bảo mật thông tin');
 /*!40000 ALTER TABLE `courses_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +200,7 @@ CREATE TABLE `courses_course` (
   PRIMARY KEY (`id`),
   KEY `courses_course_category_id_d64b93bf_fk_courses_category_id` (`category_id`),
   CONSTRAINT `courses_course_category_id_d64b93bf_fk_courses_category_id` FOREIGN KEY (`category_id`) REFERENCES `courses_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -209,7 +209,7 @@ CREATE TABLE `courses_course` (
 
 LOCK TABLES `courses_course` WRITE;
 /*!40000 ALTER TABLE `courses_course` DISABLE KEYS */;
-INSERT INTO `courses_course` VALUES (1,'2022-03-13 18:25:26.639033','2022-03-13 18:25:26.639033',1,'Các công nghệ lập trình hiện đại','Các công nghệ lập trình hiện đại','courses/2022/03/14/sach.jpg',1),(2,'2022-03-13 18:25:49.960329','2022-03-13 18:25:49.960329',1,'Lập trình Java','Lập trình Java','courses/2022/03/14/sach_V8Stmqj.jpg',1),(3,'2022-03-13 18:26:03.299348','2022-03-13 18:26:03.299348',1,'Thiết kế Web','Thiết kế Web','courses/2022/03/14/sach_5ANIoGa.jpg',1),(4,'2022-03-13 18:26:23.982756','2022-03-13 18:26:23.982756',1,'Kiểm thử phần mềm','Kiểm thử phần mềm','courses/2022/03/14/sach_mgK51GM.jpg',1),(5,'2022-03-13 18:26:41.434700','2022-03-13 18:26:41.434700',1,'Công nghệ phần mềm','Công nghệ phần mềm','courses/2022/03/14/sach_1M0FqFS.jpg',1),(6,'2022-03-13 18:27:00.554504','2022-03-13 18:27:00.554504',1,'Cấu trúc dữ liệu và giải thuật','Cấu trúc dữ liệu và giải thuật','courses/2022/03/14/sach_9pQnrb8.jpg',1),(7,'2022-03-13 18:27:15.995560','2022-03-13 18:27:15.995560',1,'Kỹ thuật lập trình','Kỹ thuật lập trình','courses/2022/03/14/sach_o9WD5CQ.jpg',1),(8,'2022-03-13 18:27:41.445651','2022-03-13 18:27:41.445651',1,'Cơ sở lập trình','Cơ sở lập trình','courses/2022/03/14/sach_7mlHrWa.jpg',1);
+INSERT INTO `courses_course` VALUES (1,'2022-03-13 18:25:26.639033','2022-03-13 18:25:26.639033',1,'Các công nghệ lập trình hiện đại','Các công nghệ lập trình hiện đại','courses/2022/03/14/sach.jpg',1),(2,'2022-03-13 18:25:49.960329','2022-03-13 18:25:49.960329',1,'Lập trình Java','Lập trình Java','courses/2022/03/14/sach_V8Stmqj.jpg',1),(3,'2022-03-13 18:26:03.299348','2022-03-13 18:26:03.299348',1,'Thiết kế Web','Thiết kế Web','courses/2022/03/14/sach_5ANIoGa.jpg',1),(4,'2022-03-13 18:26:23.982756','2022-03-13 18:26:23.982756',1,'Kiểm thử phần mềm','Kiểm thử phần mềm','courses/2022/03/14/sach_mgK51GM.jpg',1),(5,'2022-03-13 18:26:41.434700','2022-03-13 18:26:41.434700',1,'Công nghệ phần mềm','Công nghệ phần mềm','courses/2022/03/14/sach_1M0FqFS.jpg',1),(6,'2022-03-13 18:27:00.554504','2022-03-13 18:27:00.554504',1,'Cấu trúc dữ liệu và giải thuật','Cấu trúc dữ liệu và giải thuật','courses/2022/03/14/sach_9pQnrb8.jpg',1),(7,'2022-03-13 18:27:15.995560','2022-03-13 18:27:15.995560',1,'Kỹ thuật lập trình','Kỹ thuật lập trình','courses/2022/03/14/sach_o9WD5CQ.jpg',1),(8,'2022-03-13 18:27:41.445651','2022-03-13 18:27:41.445651',1,'Cơ sở lập trình','Cơ sở lập trình','courses/2022/03/14/sach_7mlHrWa.jpg',1),(9,'2022-03-15 18:32:18.375624','2022-03-15 18:32:18.375624',1,'Khóa học lập trình python căn bản','Khóa học lập trình python căn bản','courses/2022/03/16/sach.jpg',2),(10,'2022-03-15 18:33:24.639387','2022-03-15 18:33:24.639387',1,'Lập trình Python trong Máy học, Khoa học dữ liệu và Trực quan hóa dữ liệu','Lập trình Python trong Máy học, Khoa học dữ liệu và Trực quan hóa dữ liệu','courses/2022/03/16/sach_v5A15TO.jpg',2),(11,'2022-03-15 18:33:53.883265','2022-03-15 18:33:53.883265',1,'Toán và Xác suất thống kê cho Khoa học dữ liệu','Toán và Xác suất thống kê cho Khoa học dữ liệu','courses/2022/03/16/sach_WxGZQz0.jpg',2),(12,'2022-03-15 18:34:14.765410','2022-03-15 18:34:14.765410',1,'Truy vấn và thu thập dữ liệu cho Khoa học dữ liệu','Truy vấn và thu thập dữ liệu cho Khoa học dữ liệu','courses/2022/03/16/sach_0786Obn.jpg',2),(13,'2022-03-15 18:34:37.697058','2022-03-15 18:34:37.697058',1,'Tiền xử lý và phân tích dữ liệu','Tiền xử lý và phân tích dữ liệu','courses/2022/03/16/sach_9UGFqbK.jpg',2),(14,'2022-03-15 18:34:58.495726','2022-03-15 18:34:58.496692',1,'Máy học với Python','Máy học với Python','courses/2022/03/16/sach_aWLrqxv.jpg',2),(15,'2022-03-15 18:35:48.559952','2022-03-15 18:35:48.559952',1,'Lập trình R cho Khoa học dữ liệu','Lập trình R cho Khoa học dữ liệu','courses/2022/03/16/sach_PayVblE.jpg',2),(16,'2022-03-15 18:36:08.494950','2022-03-15 18:36:08.494950',1,'Học sâu với Python','Học sâu với Python','courses/2022/03/16/sach_FICnEIh.jpg',2),(17,'2022-03-15 18:36:27.982185','2022-03-15 18:36:27.982185',1,'Xử lý dữ liệu lớn trong Máy học','Xử lý dữ liệu lớn trong Máy học','courses/2022/03/16/sach_sjzRdPw.jpg',2);
 /*!40000 ALTER TABLE `courses_course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,6 +228,7 @@ CREATE TABLE `courses_lesson` (
   `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `course_id` bigint(20) DEFAULT NULL,
+  `image` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `courses_lesson_course_id_16bc4882_fk_courses_course_id` (`course_id`),
   CONSTRAINT `courses_lesson_course_id_16bc4882_fk_courses_course_id` FOREIGN KEY (`course_id`) REFERENCES `courses_course` (`id`)
@@ -240,7 +241,7 @@ CREATE TABLE `courses_lesson` (
 
 LOCK TABLES `courses_lesson` WRITE;
 /*!40000 ALTER TABLE `courses_lesson` DISABLE KEYS */;
-INSERT INTO `courses_lesson` VALUES (1,'2022-03-13 18:28:48.553988','2022-03-13 18:28:48.553988',1,'Giới thiệu','<p>Content c&aacute;c c&ocirc;ng nghệ lập tr&igrave;nh hiện đại.</p>',1),(2,'2022-03-13 18:29:04.724638','2022-03-13 18:29:04.724638',1,'Phát triển API với Django REST framework','<p>Ph&aacute;t triển API với Django REST framework</p>',1),(3,'2022-03-13 18:29:16.465489','2022-03-13 18:29:16.465489',1,'ReactJS','<p>ReactJS</p>',1),(4,'2022-03-13 18:29:27.207800','2022-03-13 18:29:27.207800',1,'ReactNative','<p>ReactNative</p>',1);
+INSERT INTO `courses_lesson` VALUES (1,'2022-03-13 18:28:48.553988','2022-03-13 18:28:48.553988',1,'Giới thiệu','<p>Content c&aacute;c c&ocirc;ng nghệ lập tr&igrave;nh hiện đại.</p>',1,NULL),(2,'2022-03-13 18:29:04.724638','2022-03-13 18:29:04.724638',1,'Phát triển API với Django REST framework','<p>Ph&aacute;t triển API với Django REST framework</p>',1,NULL),(3,'2022-03-13 18:29:16.465489','2022-03-13 18:29:16.465489',1,'ReactJS','<p>ReactJS</p>',1,NULL),(4,'2022-03-13 18:29:27.207800','2022-03-13 18:29:27.207800',1,'ReactNative','<p>ReactNative</p>',1,NULL);
 /*!40000 ALTER TABLE `courses_lesson` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -349,7 +350,7 @@ CREATE TABLE `courses_user` (
   `avatar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -358,7 +359,7 @@ CREATE TABLE `courses_user` (
 
 LOCK TABLES `courses_user` WRITE;
 /*!40000 ALTER TABLE `courses_user` DISABLE KEYS */;
-INSERT INTO `courses_user` VALUES (1,'pbkdf2_sha256$320000$PpXO0RhgaqLVlt4dD2PU3R$LTzOCSqH9WUNPk30FyWUjZ3ieGnSjbUnBGMtKJ/ow+0=','2022-03-13 18:19:31.000000',1,'admin','Huy','Bui Khanh','admin@gmail.com',1,1,'2022-03-13 18:19:13.000000','avatars/2022/03/3600_9_08.jpg');
+INSERT INTO `courses_user` VALUES (1,'pbkdf2_sha256$320000$PpXO0RhgaqLVlt4dD2PU3R$LTzOCSqH9WUNPk30FyWUjZ3ieGnSjbUnBGMtKJ/ow+0=','2022-03-17 16:54:39.143278',1,'admin','Huy','Bui Khanh','admin@gmail.com',1,1,'2022-03-13 18:19:13.000000','avatars/2022/03/3600_9_08.jpg'),(2,'pbkdf2_sha256$320000$PpXO0RhgaqLVlt4dD2PU3R$LTzOCSqH9WUNPk30FyWUjZ3ieGnSjbUnBGMtKJ/ow+0=','2022-03-17 16:54:49.250278',0,'khanhvan','van','khanh','van.bk@gmail.com',0,1,'2022-03-17 16:52:49.000000','avatars/2022/03/Cplusplus.png');
 /*!40000 ALTER TABLE `courses_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -468,7 +469,7 @@ CREATE TABLE `django_admin_log` (
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_courses_user_id` FOREIGN KEY (`user_id`) REFERENCES `courses_user` (`id`),
   CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -477,7 +478,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
-INSERT INTO `django_admin_log` VALUES (1,'2022-03-13 18:22:09.960933','1','Công nghệ thông tin',1,'[{\"added\": {}}]',8,1),(2,'2022-03-13 18:22:18.257955','2','Khoa học dữ liệu',1,'[{\"added\": {}}]',8,1),(3,'2022-03-13 18:25:26.655993','1','Các công nghệ lập trình hiện đại',1,'[{\"added\": {}}]',10,1),(4,'2022-03-13 18:25:49.978418','2','Lập trình Java',1,'[{\"added\": {}}]',10,1),(5,'2022-03-13 18:26:03.316307','3','Thiết kế Web',1,'[{\"added\": {}}]',10,1),(6,'2022-03-13 18:26:24.001703','4','Kiểm thử phần mềm',1,'[{\"added\": {}}]',10,1),(7,'2022-03-13 18:26:41.450685','5','Công nghệ phần mềm',1,'[{\"added\": {}}]',10,1),(8,'2022-03-13 18:27:00.571459','6','Cấu trúc dữ liệu và giải thuật',1,'[{\"added\": {}}]',10,1),(9,'2022-03-13 18:27:16.012546','7','Kỹ thuật lập trình',1,'[{\"added\": {}}]',10,1),(10,'2022-03-13 18:27:41.474615','8','Cơ sở lập trình',1,'[{\"added\": {}}]',10,1),(11,'2022-03-13 18:28:48.590890','1','Giới thiệu',1,'[{\"added\": {}}]',11,1),(12,'2022-03-13 18:29:04.756580','2','Phát triển API với Django REST framework',1,'[{\"added\": {}}]',11,1),(13,'2022-03-13 18:29:16.499398','3','ReactJS',1,'[{\"added\": {}}]',11,1),(14,'2022-03-13 18:29:27.240712','4','ReactNative',1,'[{\"added\": {}}]',11,1),(15,'2022-03-13 18:30:57.627621','1','admin',2,'[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Avatar\"]}}]',6,1);
+INSERT INTO `django_admin_log` VALUES (1,'2022-03-13 18:22:09.960933','1','Công nghệ thông tin',1,'[{\"added\": {}}]',8,1),(2,'2022-03-13 18:22:18.257955','2','Khoa học dữ liệu',1,'[{\"added\": {}}]',8,1),(3,'2022-03-13 18:25:26.655993','1','Các công nghệ lập trình hiện đại',1,'[{\"added\": {}}]',10,1),(4,'2022-03-13 18:25:49.978418','2','Lập trình Java',1,'[{\"added\": {}}]',10,1),(5,'2022-03-13 18:26:03.316307','3','Thiết kế Web',1,'[{\"added\": {}}]',10,1),(6,'2022-03-13 18:26:24.001703','4','Kiểm thử phần mềm',1,'[{\"added\": {}}]',10,1),(7,'2022-03-13 18:26:41.450685','5','Công nghệ phần mềm',1,'[{\"added\": {}}]',10,1),(8,'2022-03-13 18:27:00.571459','6','Cấu trúc dữ liệu và giải thuật',1,'[{\"added\": {}}]',10,1),(9,'2022-03-13 18:27:16.012546','7','Kỹ thuật lập trình',1,'[{\"added\": {}}]',10,1),(10,'2022-03-13 18:27:41.474615','8','Cơ sở lập trình',1,'[{\"added\": {}}]',10,1),(11,'2022-03-13 18:28:48.590890','1','Giới thiệu',1,'[{\"added\": {}}]',11,1),(12,'2022-03-13 18:29:04.756580','2','Phát triển API với Django REST framework',1,'[{\"added\": {}}]',11,1),(13,'2022-03-13 18:29:16.499398','3','ReactJS',1,'[{\"added\": {}}]',11,1),(14,'2022-03-13 18:29:27.240712','4','ReactNative',1,'[{\"added\": {}}]',11,1),(15,'2022-03-13 18:30:57.627621','1','admin',2,'[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Avatar\"]}}]',6,1),(16,'2022-03-14 19:36:26.435475','3','Hệ thống thông tin quản lý',1,'[{\"added\": {}}]',8,1),(17,'2022-03-14 19:36:38.571004','4','An toàn bảo mật thông tin',1,'[{\"added\": {}}]',8,1),(18,'2022-03-15 18:32:18.414544','9','Khóa học lập trình python căn bản',1,'[{\"added\": {}}]',10,1),(19,'2022-03-15 18:33:24.658367','10','Lập trình Python trong Máy học, Khoa học dữ liệu và Trực quan hóa dữ liệu',1,'[{\"added\": {}}]',10,1),(20,'2022-03-15 18:33:53.904188','11','Toán và Xác suất thống kê cho Khoa học dữ liệu',1,'[{\"added\": {}}]',10,1),(21,'2022-03-15 18:34:14.782364','12','Truy vấn và thu thập dữ liệu cho Khoa học dữ liệu',1,'[{\"added\": {}}]',10,1),(22,'2022-03-15 18:34:37.715037','13','Tiền xử lý và phân tích dữ liệu',1,'[{\"added\": {}}]',10,1),(23,'2022-03-15 18:34:58.519630','14','Máy học với Python',1,'[{\"added\": {}}]',10,1),(24,'2022-03-15 18:35:48.578931','15','Lập trình R cho Khoa học dữ liệu',1,'[{\"added\": {}}]',10,1),(25,'2022-03-15 18:36:08.512912','16','Học sâu với Python',1,'[{\"added\": {}}]',10,1),(26,'2022-03-15 18:36:28.001117','17','Xử lý dữ liệu lớn trong Máy học',1,'[{\"added\": {}}]',10,1),(27,'2022-03-17 16:53:53.866343','2','khanhvan',1,'[{\"added\": {}}]',6,1);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -520,7 +521,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -529,7 +530,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2022-03-13 18:15:33.190675'),(2,'contenttypes','0002_remove_content_type_name','2022-03-13 18:15:33.303373'),(3,'auth','0001_initial','2022-03-13 18:15:33.608557'),(4,'auth','0002_alter_permission_name_max_length','2022-03-13 18:15:33.679368'),(5,'auth','0003_alter_user_email_max_length','2022-03-13 18:15:33.690339'),(6,'auth','0004_alter_user_username_opts','2022-03-13 18:15:33.702307'),(7,'auth','0005_alter_user_last_login_null','2022-03-13 18:15:33.713278'),(8,'auth','0006_require_contenttypes_0002','2022-03-13 18:15:33.716269'),(9,'auth','0007_alter_validators_add_error_messages','2022-03-13 18:15:33.726243'),(10,'auth','0008_alter_user_username_max_length','2022-03-13 18:15:33.736217'),(11,'auth','0009_alter_user_last_name_max_length','2022-03-13 18:15:33.747186'),(12,'auth','0010_alter_group_name_max_length','2022-03-13 18:15:33.766137'),(13,'auth','0011_update_proxy_permissions','2022-03-13 18:15:33.777107'),(14,'auth','0012_alter_user_first_name_max_length','2022-03-13 18:15:33.786083'),(15,'courses','0001_initial','2022-03-13 18:15:35.233750'),(16,'admin','0001_initial','2022-03-13 18:15:35.406289'),(17,'admin','0002_logentry_remove_auto_add','2022-03-13 18:15:35.426234'),(18,'admin','0003_logentry_add_action_flag_choices','2022-03-13 18:15:35.444187'),(19,'oauth2_provider','0001_initial','2022-03-13 18:15:36.438528'),(20,'oauth2_provider','0002_auto_20190406_1805','2022-03-13 18:15:36.520310'),(21,'oauth2_provider','0003_auto_20201211_1314','2022-03-13 18:15:36.602091'),(22,'oauth2_provider','0004_auto_20200902_2022','2022-03-13 18:15:37.158602'),(23,'oauth2_provider','0005_auto_20211222_2352','2022-03-13 18:15:37.274293'),(24,'sessions','0001_initial','2022-03-13 18:15:37.314188');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2022-03-13 18:15:33.190675'),(2,'contenttypes','0002_remove_content_type_name','2022-03-13 18:15:33.303373'),(3,'auth','0001_initial','2022-03-13 18:15:33.608557'),(4,'auth','0002_alter_permission_name_max_length','2022-03-13 18:15:33.679368'),(5,'auth','0003_alter_user_email_max_length','2022-03-13 18:15:33.690339'),(6,'auth','0004_alter_user_username_opts','2022-03-13 18:15:33.702307'),(7,'auth','0005_alter_user_last_login_null','2022-03-13 18:15:33.713278'),(8,'auth','0006_require_contenttypes_0002','2022-03-13 18:15:33.716269'),(9,'auth','0007_alter_validators_add_error_messages','2022-03-13 18:15:33.726243'),(10,'auth','0008_alter_user_username_max_length','2022-03-13 18:15:33.736217'),(11,'auth','0009_alter_user_last_name_max_length','2022-03-13 18:15:33.747186'),(12,'auth','0010_alter_group_name_max_length','2022-03-13 18:15:33.766137'),(13,'auth','0011_update_proxy_permissions','2022-03-13 18:15:33.777107'),(14,'auth','0012_alter_user_first_name_max_length','2022-03-13 18:15:33.786083'),(15,'courses','0001_initial','2022-03-13 18:15:35.233750'),(16,'admin','0001_initial','2022-03-13 18:15:35.406289'),(17,'admin','0002_logentry_remove_auto_add','2022-03-13 18:15:35.426234'),(18,'admin','0003_logentry_add_action_flag_choices','2022-03-13 18:15:35.444187'),(19,'oauth2_provider','0001_initial','2022-03-13 18:15:36.438528'),(20,'oauth2_provider','0002_auto_20190406_1805','2022-03-13 18:15:36.520310'),(21,'oauth2_provider','0003_auto_20201211_1314','2022-03-13 18:15:36.602091'),(22,'oauth2_provider','0004_auto_20200902_2022','2022-03-13 18:15:37.158602'),(23,'oauth2_provider','0005_auto_20211222_2352','2022-03-13 18:15:37.274293'),(24,'sessions','0001_initial','2022-03-13 18:15:37.314188'),(25,'courses','0002_lesson_image','2022-03-15 11:20:19.396286');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -555,7 +556,6 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('iyjulk003arwcj7rx9uiu2txggapybz0','.eJxVjMsOwiAQRf-FtSHD8KxL934DAQakaiAp7cr479qkC93ec859MR-2tfpt5MXPxM5MsNPvFkN65LYDuod26zz1ti5z5LvCDzr4tVN-Xg7376CGUb-10zglCAQUpCgq26gjGW2AiqGIBkBK5yAaVQiBJkDMzha0ViZVBLD3B98EN2I:1nTSoW:YWgWQ77IAKd6qkfVfNpHKXYwXJ5Td39F4VX73c_tonI','2022-03-27 18:19:32.121179');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -754,4 +754,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-14  1:32:24
+-- Dump completed on 2022-03-18 15:23:02
