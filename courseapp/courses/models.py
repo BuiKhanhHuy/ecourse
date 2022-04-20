@@ -4,7 +4,7 @@ from ckeditor.fields import RichTextField
 
 
 class User(AbstractUser):
-    avatar = models.ImageField(upload_to='avatars/%Y/%m/', null=True)
+    avatar = models.ImageField(upload_to='avatars/%Y/%m/', null=True, blank=True)
 
 
 class BaseModel(models.Model):

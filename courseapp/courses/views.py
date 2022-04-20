@@ -11,9 +11,10 @@ from .models import (Category, Course, Lesson, Comment,
 from .serializers import (CategorySerializer, CourseSerializer,
                           LessonSerializer, LessonDetailSerializer,
                           CommentSerializer, BaseCommentSerializer,
-                          UserSerializer, UserDetailSerializer,
+                          UserSerializer,
                           RatingSerializer, ViewSerializer)
 from .paginator import CoursePagination
+from django.conf import settings
 
 
 class CategoryViewSet(viewsets.ViewSet, generics.ListAPIView):
@@ -46,7 +47,8 @@ class CourseViewSet(viewsets.ViewSet, generics.ListAPIView):
         q = request.query_params.get('q')
         if q is not None:
             lessons = lessons.filter(subject__icontains=q)
-        return Response(data=LessonSerializer(lessons, many=True).data, status=status.HTTP_200_OK)
+        return Response(data=LessonSerializer(lessons, many=True, context={'request': request}).data,
+                        status=status.HTTP_200_OK)
 
 
 class LessonViewSet(viewsets.ViewSet, generics.RetrieveAPIView):
@@ -97,15 +99,13 @@ class LessonViewSet(viewsets.ViewSet, generics.RetrieveAPIView):
     @action(methods=['post'], detail=True, url_path='like', url_name='like')
     def like_action(self, request, pk):
         try:
-            act, create = Action.objects.get_or_create(lesson=self.get_object(), user=request.user)
-            if create is False:
-                if act.active is True:
-                    act.active = False
-                else:
-                    act.active = True
-                act.save()
+            act, _ = Action.objects.get_or_create(lesson=self.get_object(), user=request.user)
+            act.active = not act.active
+            act.save()
         except Http404:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        except:
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
             return Response(status=status.HTTP_200_OK)
 
@@ -122,6 +122,8 @@ class LessonViewSet(viewsets.ViewSet, generics.RetrieveAPIView):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
         except Http404:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        except:
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
             return Response(data=RatingSerializer(ra).data,
                             status=status.HTTP_200_OK)
@@ -144,15 +146,12 @@ class UserViewSet(viewsets.ViewSet, generics.CreateAPIView):
     serializer_class = UserSerializer
 
 
-class UserApiView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+class UserAPIView(APIView):
+    permission_classes = [permissions.IsAuthenticated, ]
 
     def get(self, request):
-        user_serializer = UserDetailSerializer(request.user, context={'request': request})
-        return Response(data=user_serializer.data, status=status.HTTP_200_OK)
-
-    def put(self, request):
-        pass
+        user = request.user
+        return Response(data=UserSerializer(user, context={'request': request}).data, status=status.HTTP_200_OK)
 
 
 class CommentViewSet(viewsets.ViewSet, generics.DestroyAPIView, generics.UpdateAPIView):
@@ -188,3 +187,8 @@ class CommentViewSet(viewsets.ViewSet, generics.DestroyAPIView, generics.UpdateA
         else:
             return Response(data=BaseCommentSerializer(comment).data,
                             status=status.HTTP_200_OK)
+
+
+class Oauth2Info(APIView):
+    def get(self, request):
+        return Response(status=status.HTTP_200_OK, data=settings.OAUTH2_INFO)

@@ -39,14 +39,24 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'courses',
-    'rest_framework',
-    'oauth2_provider',
     'drf_yasg',
+    'rest_framework',
+    'oauth2_provider'
     'debug_toolbar',
     'corsheaders'
 ]
 
+OAUTH2_PROVIDER = {
+    'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore'
+}
+
+OAUTH2_INFO = {
+    'client_id': 'TB0zt8GVPp3M39Ea7XUTpEqtobqrCOfz0PxsjfUJ',
+    'client_secret': 'TVVHNT1tYJDJyyqnEC2tpsVvhDIupSNKWKNcnmVNABEfeytVDt7SsL7yy0Xb21Zs2giWjgtgbcMe7yPMqRynnNbkWq63qzfl6PXF7iKSx13OG1mM4sU9IBqB065xRNgO'
+}
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,7 +65,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -77,6 +86,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -168,6 +180,12 @@ JAZZMIN_UI_TWEAKS = {
     "theme": "Sandstone",
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    )
+}
+
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
@@ -232,6 +250,3 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('oauth2_provider.contrib.rest_framework.OAuth2Authentication',),
-}

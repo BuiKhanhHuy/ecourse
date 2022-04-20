@@ -34,6 +34,15 @@ class TagSerializer(serializers.ModelSerializer):
 
 class LessonSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True)
+    image = serializers.SerializerMethodField(source='image')
+
+    def get_image(self, lesson):
+        request = self.context['request']
+        if lesson.image.name.startswith('static/'):
+            path = "/%s" % lesson.image.name
+        else:
+            path = '/static/%s' % lesson.image.name
+        return request.build_absolute_uri(path)
 
     class Meta:
         model = Lesson
@@ -53,31 +62,35 @@ class UserCommentSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    avatar_path = serializers.SerializerMethodField(source='avatar')
+
+    def get_avatar_path(self, user):
+        request = self.context['request']
+
+        if user.avatar and not user.avatar.name.startswith('/static'):
+            path = '/static/%s' % user.avatar.name
+            return request.build_absolute_uri(path)
+
     def create(self, validated_data):
-        user = User.userects.create_user(**validated_data)
+        user = User.objects.create_user(**validated_data)
         user.set_password(user.password)
         user.save()
         return user
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'date_joined']
-
-
-class UserDetailSerializer(serializers.ModelSerializer):
-    avatar = serializers.SerializerMethodField(source='avatar')
-
-    def get_avatar(self, user):
-        request = self.context['request']
-        if user.avatar.name.startswith('static/'):
-            path = "/%s" % user.avatar.name
-        else:
-            path = '/static/%s' % user.avatar
-        return request.build_absolute_uri(path)
-
-    class Meta:
-        model = User
-        fields = ['avatar', 'first_name', 'last_name', 'username', 'password', 'email']
+        fields = ['first_name', 'last_name', 'username', 'password', 'email', 'avatar', 'avatar_path']
+        extra_kwargs = {
+            'password': {
+                'write_only': True,
+            },
+            'avatar': {
+                'write_only': True,
+            },
+            'avatar_path': {
+                'read_only': True
+            }
+        }
 
 
 class BaseCommentSerializer(serializers.ModelSerializer):
